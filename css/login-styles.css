@@ -1,0 +1,27 @@
+body.login {
+    /* animation: pulsecolor 6s infinite; */
+}
+body.login form {
+  background-color: #fff;
+}
+
+@keyframes pulsecolor {
+    0% {
+      background:#e8e8e872;
+    }
+    33% {
+      background: #ababab39;
+    }
+    67% {
+      background:#69696945;
+    }
+    100% {
+      background:#bfbfbf3b;
+    }
+  }
+
+  .login form{
+    background-color: #ddddddbd;
+    border: 1px solid #dbdbdb;
+    box-shadow: 0 1px 3px #6565653b;
+  }

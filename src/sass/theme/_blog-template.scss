@@ -1,0 +1,483 @@
+// Blog Template Styles
+.page-content {
+    &.blog-template {
+        background-color: $color-1;
+
+        .popular-section {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-top: $whiteSpace;
+            margin-top: $headerWhiteSpace;
+
+            .popular-wrapper {
+                border-bottom: 1px solid var(--primary-color);
+
+                .popular-title {
+                    font-family: 'Lavish', serif;
+                    font-weight: 400;
+                    color: var(--primary-color);
+                    max-width: 700px;
+                    padding-bottom: $titleSpacing;
+
+                    @media (max-width: 768px) {
+                        max-width: 100%;
+                    }
+                }
+
+                .popular-right {
+                    height: 100%;
+
+                    .hero-main-post {
+                        position: relative;
+                        overflow: hidden;
+                        height: 100%;
+                        cursor: pointer;
+                        transition: transform 0.3s ease;
+
+                        &:hover {
+                            transform: translateY(-5px);
+                        }
+
+                        .hero-bg-image {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            z-index: 1;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                object-position: center;
+                            }
+                        }
+
+                        .hero-overlay {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: linear-gradient(180deg,
+                                    rgba(0, 0, 0, 0.1) 0%,
+                                    rgba(0, 0, 0, 0.3) 50%,
+                                    rgba(0, 0, 0, 0.7) 100%);
+                            z-index: 2;
+                        }
+
+                        .hero-content {
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            padding: $titleSpacing;
+                            z-index: 3;
+                            color: $color-9;
+
+                            .hero-title {
+                                margin-bottom: $titleSpacing;
+                            
+                                .link{
+                                    text-decoration: none;
+                                    font-size: calc(20px + (32 - 20) * ((100vw - 320px) / (1920 - 320)));
+                                    font-family: 'Lavish', serif;
+                                    color: $color-14;
+                                }
+                            }
+
+                            .hero-meta {
+                                .author {
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: start;
+
+                                    .author-text {
+                                        font-family: 'Inter', sans-serif;
+                                        font-size: 12px;
+                                        color: var(--white);
+                                        font-weight: 400;
+                                        margin-bottom: 5px;
+                                    }
+
+                                    .author-content {
+                                        display: flex;
+                                        align-items: center;
+
+                                        .author-avatar {
+                                            width: 34px;
+                                            height: auto;
+                                            border-radius: 50px;
+                                        }
+
+                                        .user-name {
+                                            color: var(--white);
+                                            font-weight: 400;
+                                            margin-left: 5px;
+                                            margin-bottom: 5px;
+                                        }
+                                    }
+                                }
+
+                                .date {
+                                    .date-text {
+                                        font-size: 12px;
+                                        color: var(--white);
+                                        font-weight: 400;
+                                        margin-bottom: 5px;
+                                    }
+
+                                    .date-published {
+                                        font-family: 'Inter', sans-serif;
+                                        color: var(--white);
+                                        font-weight: 400;
+                                        margin-bottom: 5px;
+                                    }
+                                }
+                            }
+
+                            @media (max-width: 768px) {
+                                padding: 1.5rem;
+
+                                .hero-meta {
+                                    display: flex;
+                                    flex-direction: row;
+
+                                    .row {
+                                        width: 100%;
+                                        
+                                        .author {
+                                            .author-text {
+                                                font-size: 10px;
+                                            }
+
+                                            .author-content {
+
+
+                                                .author-avatar {
+                                                    width: 20px;
+
+                                                }
+
+                                                .user-name {
+
+                                                    font-size: 8px;
+
+                                                }
+                                            }
+                                        }
+
+                                        .date {
+                                            .date-text {
+
+                                                font-size: 10px;
+
+                                            }
+
+                                            .date-published {
+
+                                                font-size: 8px;
+
+                                            }
+                                        }
+                                    }
+
+
+                                }
+                            }
+                        }
+
+                        @media (max-width: 768px) {
+                            height: 400px;
+                        }
+
+                        @media (max-width: 480px) {
+                            height: 350px;
+                        }
+                    }
+                }
+
+                .popular-left {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+
+
+                    @media (max-width: 768px) {
+                        padding-left: 0;
+                        padding-top: $headerWhiteSpace;
+                    }
+
+                    .side-post {
+                        flex: 1;
+                        position: relative;
+                        margin-bottom: $titleSpacing;
+                        cursor: pointer;
+                        transition: transform 0.3s ease;
+                        overflow: hidden;
+                        box-shadow: 0 4px 12px #0000001a;
+                        
+                        @include media-breakpoint-down(md){
+                            height: 350px;
+                        }
+
+                        &:hover {
+                            transform: translateY(-3px);
+                            box-shadow: 0 8px 24px var(--primary-shadow-15);
+                        }
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+
+                        .side-post-image {
+                            position: relative;
+                            height: 100%;
+                            overflow: hidden;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                object-position: center;
+                                transition: transform 0.3s ease;
+                            }
+
+                            &::after {
+                                content: '';
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                bottom: 0;
+                                background: linear-gradient(180deg,
+                                        rgba(0, 0, 0, 0) 0%,
+                                        rgba(0, 0, 0, 0.3) 100%);
+                            }
+                        }
+
+                        .side-post-content {
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            padding: $titleSpacing;
+                            background: linear-gradient(180deg,
+                                    rgba(0, 0, 0, 0) 0%,
+                                    rgba(0, 0, 0, 0.4) 50%,
+                                    rgba(0, 0, 0, 0.8) 100%);
+
+                            .side-post-title {
+                                font-family: 'Lavish', serif;
+                                color: var(--gold-accent);
+                                margin: 0;
+
+                                .link{
+                                    text-decoration: none;
+                                    font-size: calc(14px + (22 - 14) * ((100vw - 320px) / (1920 - 320)));
+                                    font-family: 'Lavish', serif;
+                                    color: $color-14;
+                                }
+                            }
+
+                            .side-post-excerpt {
+                                font-family: 'Inter', sans-serif;
+                                font-size: 12px;
+                                color: $color-9;
+                                margin: 0;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 3;
+                                -webkit-box-orient: vertical;
+                                overflow: hidden;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .featured-section {
+            padding-bottom: $headerWhiteSpace;
+            padding-top: $headerWhiteSpace;
+
+            .featured-wrapper {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border-top: 1px solid $color-2;
+                padding-top: $headerWhiteSpace;
+
+                .featured-title {
+                    font-family: 'Lavish', serif;
+                    color: $color-2;
+                    max-width: 700px;
+                    margin: 0 auto;
+                    padding-bottom: $titleSpacing;
+                }
+
+                .featured-text {
+                    color: #000;
+                    text-align: center;
+                    max-width: 800px;
+                    margin: 0 auto;
+                }
+
+                .featured-content {
+                    width: 100%;
+                    padding-top: $headerWhiteSpace;
+
+                    .featured-post {
+                        position: relative;
+                        overflow: hidden;
+                        height: 300px;
+                        cursor: pointer;
+                        transition: transform 0.3s ease;
+
+                        &:hover {
+                            transform: translateY(-5px);
+                        }
+
+                        .featured-bg-image {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            z-index: 1;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                object-position: center;
+                            }
+                        }
+
+                        .featured-overlay {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: linear-gradient(180deg,
+                                    rgba(0, 0, 0, 0.1) 0%,
+                                    rgba(0, 0, 0, 0.3) 50%,
+                                    rgba(0, 0, 0, 0.7) 100%);
+                            z-index: 2;
+                        }
+
+                        .featured-content {
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            padding: 1rem;
+                            z-index: 3;
+                            color: white;
+
+                            .featured-post-title {
+                                font-family: 'Lavish', serif;
+                                font-size: 24px;
+                                font-weight: 400;
+                                line-height: 1.2;
+                                color: #F2F3AE;
+                                margin: 0px;
+
+                                @media (max-width: 768px) {
+                                    font-size: 28px;
+                                }
+
+                                @media (max-width: 480px) {
+                                    font-size: 24px;
+                                }
+                            }
+
+                            .featured-post-text {
+                                font-family: 'Inter', sans-serif;
+                                font-size: 8px;
+                                color: rgba(255, 255, 255, 0.9);
+                                line-height: 1.4;
+                                text-align: start;
+                                margin: 0px;
+                            }
+
+                            .featured-meta {
+                                margin-top: 10px;
+
+                                .author {
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: start;
+
+                                    .author-text {
+                                        font-family: 'Inter', sans-serif;
+                                        font-size: 8px;
+                                        color: #FFF;
+                                        font-weight: 400;
+                                        margin-bottom: 5px;
+                                    }
+
+                                    .author-content {
+                                        display: flex;
+                                        align-items: center;
+
+                                        .author-avatar {
+                                            width: 20px;
+                                            height: auto;
+                                            border-radius: 50px;
+                                        }
+
+                                        .user-name {
+                                            font-family: 'Inter', sans-serif;
+                                            font-size: 10px;
+                                            color: #FFF;
+                                            font-weight: 400;
+                                            margin-left: 5px;
+                                            margin-bottom: 5px;
+                                        }
+                                    }
+                                }
+
+                                .date {
+                                    .date-text {
+                                        font-family: 'Inter', sans-serif;
+                                        font-size: 8px;
+                                        color: #FFF;
+                                        font-weight: 400;
+                                        margin-bottom: 5px;
+                                    }
+
+                                    .date-published {
+                                        font-family: 'Inter', sans-serif;
+                                        font-size: 10px;
+                                        color: #FFF;
+                                        font-weight: 400;
+                                        margin-bottom: 5px;
+                                    }
+                                }
+                            }
+
+                            @media (max-width: 768px) {
+                                padding: 1.5rem;
+
+
+                            }
+                        }
+
+                        @media (max-width: 768px) {
+                            height: 400px;
+                        }
+
+                        @media (max-width: 480px) {
+                            height: 350px;
+                            border-radius: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

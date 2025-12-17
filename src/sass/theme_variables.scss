@@ -1,0 +1,68 @@
+//Colors
+$color-1: #FFFBDB;
+$color-2: #28587B;
+$color-3: #5C0819;
+$color-4: #5C0819;
+$color-5: #5C0819;
+$color-6: #5C0819;
+$color-7: #7C7334;
+$color-8: #190101;
+$color-9: #f6f6f6;
+$color-10: #1e1e1e;
+$color-11: #404040;
+$color-12: #495978;
+$color-13: #ffffff;
+$color-14: #F2F3AE;
+// Font Family
+$font-family-base: 'Poppins', sans-serif;
+$font-family-base-2: 'Lavish';
+
+// Section spacing
+$whiteSpace: calc(56px + (116 - 56) * ((100vw - 320px) / (1920 - 320)));
+$headerWhiteSpace: calc(28px + (52 - 28) * ((100vw - 320px) / (1920 - 320)));
+$borderRadius: calc(18px + (34 - 18) * ((100vw - 320px) / (1920 - 320)));
+$titleSpacing: calc(12px + (24 - 12) * ((100vw - 320px) / (1920 - 320)));
+
+// Bootstrap colors
+$black: #1e1e1e;
+$body-bg: $color-9;
+$body-color: $color-10;
+
+$primary: $color-1;
+$secondary: $color-5;
+$success: $color-6;
+$danger: $color-8;
+
+$border: #ccc;
+$meta: #f8faf8;
+$btn-font-weight: 700;
+
+$btn-secondary-color: $color-1;
+$grid-gutter-width: 1.5rem;
+$spacer: 1rem;
+$gutters: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 2,
+  6: $spacer * 3,
+);
+
+$border-radius: 6px;
+$border-radius-sm: 3px;
+$border-radius-lg: 6px;
+$btn-border-width: 2px;
+// Input / Button
+$input-btn-line-height: 1.5;
+
+$accordion-bg: $color-9;
+$accordion-color: $color-4;
+$accordion-button-color: $color-9;
+$accordion-button-bg: $color-4;
+$accordion-button-active-bg: $color-4;
+$accordion-button-active-color: $color-9;
+$accordion-border-radius: $borderRadius;
+$accordion-border-color: $color-9;
+// Test comment

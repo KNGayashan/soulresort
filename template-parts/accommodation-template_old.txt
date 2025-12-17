@@ -1,0 +1,388 @@
+<?php 
+/** 
+* Template Name: Accommodation Template
+*
+* @package base_theme
+**/ 
+get_header('dark');
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
+?>
+
+<div class="page-content accommodation-template">
+
+    <!-- Hero Section -->
+    <?php if (have_rows('hero_section')):  while (have_rows('hero_section')): the_row(); ?>
+    <section class="hero-section" id="hero-section">
+        <div class="hero-background">
+            <div class="hero-image-container">
+                <?php 
+                // For ACF integration, replace the hardcoded URL with:
+                // $hero_image = get_field('hero_background_image');
+                // $hero_image_url = $hero_image ? $hero_image['url'] : 'default-image-url';
+                $hero_image = get_sub_field('hero_banner'); 
+                $hero_image_url = $hero_image ? $hero_image : 'default-image-url';
+                ?>
+                <div class="hero-image-clippath" id="hero-clippath"
+                    style="background-image: url('<?php echo esc_url($hero_image_url); ?>');">
+                </div>
+            </div>
+        </div>
+        <!-- Text behind clippath (blue) -->
+        <div class="hero-text-back">
+            <div class="container">
+                <div class="hero-text-wrapper">
+                    <h1 class="hero-title-blue">
+                        <span class="hero-title-line"><?php the_sub_field('hero_title') ?></span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Text in front of clippath (white) -->
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-text-wrapper">
+                    <h1 class="hero-title-white" id="hero-title">
+                        <span class="hero-title-line"><?php the_sub_field('hero_title') ?></span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php endwhile; endif; ?>
+
+    <?php if (have_rows('accommodations_details')):  while (have_rows('accommodations_details')): the_row(); ?>
+    <section class="serene-section" id="serene-section-id">
+        <div class="container">
+            <div class="serene-wrapper">
+                <?php if (have_rows('hero_title')):  while (have_rows('hero_title')): the_row(); ?>
+                <h2 class="serene-title">
+                    <span class="first_line"><?php the_sub_field('first_line') ?></span>
+                    <span class="second_line"><?php the_sub_field('second_line') ?></span>
+                </h2>
+                <?php endwhile; endif; ?>
+                <div class="serene-content">
+                    <div class="serene-content-wrapper">
+                        <div class="serene-upper">
+                            <div class="row">
+                                <div class="col-12 col-md-5 col-lg-5">
+                                    <div class="serene-upper-left">
+                                        <div class="serene-upper-left-text"><?php the_sub_field('top_description') ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-7 col-lg-7">
+                                    <div class="images_wrapper_top">
+                                        <div class="serene-upper-middle">
+                                            <?php 
+                                        $upper_middle_img = get_sub_field('upper_middle_img');
+                                        if ($upper_middle_img): ?>
+                                            <img src="<?php echo esc_url($upper_middle_img['url']); ?>"
+                                                alt="<?php echo esc_attr($upper_middle_img['alt']); ?>"
+                                                class="serene-upper-middle-img img-fluid single_img">
+                                            <?php endif; ?>
+                                        </div>
+                                        <div class="serene-upper-right">
+                                            <?php 
+                                        $upper_right_image = get_sub_field('upper_right_image');
+                                        if ($upper_right_image): ?>
+                                            <img src="<?php echo esc_url($upper_right_image['url']); ?>"
+                                                alt="<?php echo esc_attr($upper_right_image['alt']); ?>"
+                                                class="serene-upper-right-img img-fluid single_img">
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="serene-bottom">
+                            <div class="row align-items-end">
+                                <div class="col-12 col-md-7 col-lg-7 order-2 order-md-1">
+                                    <div class="bottom_images_wrapper">
+                                        <div class="serene-bottom-left">
+                                            <?php 
+                                        $bottom_left_image = get_sub_field('bottom_left_image');
+                                        if ($bottom_left_image): ?>
+                                            <img src="<?php echo esc_url($bottom_left_image['url']); ?>"
+                                                alt="<?php echo esc_attr($bottom_left_image['alt']); ?>"
+                                                class="serene-bottom-left-img img-fluid single_img">
+                                            <?php endif; ?>
+                                        </div>
+                                        <div class="serene-bottom-middle">
+                                            <?php 
+                                        $bottom_middle_image = get_sub_field('bottom_middle_image');
+                                        if ($bottom_middle_image): ?>
+                                            <img src="<?php echo esc_url($bottom_middle_image['url']); ?>"
+                                                alt="<?php echo esc_attr($bottom_middle_image['alt']); ?>"
+                                                class="serene-bottom-middle-img img-fluid single_img">
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-5 col-lg-5  order-1 order-md-2">
+                                    <div class="serene-bottom-right">
+                                        <div class="serene-bottom-right-text">
+                                            <?php the_sub_field('bottom_description') ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php endwhile; endif; ?>
+
+    <?php if (have_rows('wellness_section')):  while (have_rows('wellness_section')): the_row(); ?>
+    <section class="wellness-section" id="wellness-section-id">
+        <div class="container">
+            <div class="wellness-wrapper">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <div class="wellness-left">
+                            <?php 
+                                        $wellness_top_image = get_sub_field('top_image');
+                                        if ($wellness_top_image): ?>
+                            <img src="<?php echo esc_url($wellness_top_image['url']); ?>"
+                                alt="<?php echo esc_attr($wellness_top_image['alt']); ?>"
+                                class="wellness-left-img img-fluid single_img">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <div class="wellness-content">
+                            <h2 class="wellness-title">
+                                <?php the_sub_field('title') ?>
+                            </h2>
+                            <p class="wellness-description">
+                                <?php the_sub_field('description') ?>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <div class="wellness-right">
+                            <?php 
+                                        $wellness_bottom_image = get_sub_field('bottom_image');
+                                        if ($wellness_bottom_image): ?>
+                            <img src="<?php echo esc_url($wellness_bottom_image['url']); ?>"
+                                alt="<?php echo esc_attr($wellness_bottom_image['alt']); ?>"
+                                class="wellness-right-img img-fluid single_img">
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php endwhile; endif; ?>
+
+    <section class="rooms-section" id="rooms-section-id">
+        <div class="container">
+            <div class="rooms-wrapper">
+                <?php if (have_rows('our_rooms_section')):  while (have_rows('our_rooms_section')): the_row(); ?>
+                <div class="rooms-header">
+                    <h2 class="rooms-title"><?php the_sub_field('title') ?></h2>
+                    <p class="rooms-description"><?php the_sub_field('description') ?></p>
+                </div>
+                <?php endwhile; endif; ?>
+
+                <?php 
+                // Query all room posts
+                $rooms_query = new WP_Query(array(
+                    'post_type' => 'room',
+                    'posts_per_page' => -1,
+                    'post_status' => 'publish',
+                    'meta_query' => array(
+                        array(
+                            'key' => 'accommodation_page_section_button_name',
+                            'compare' => 'EXISTS'
+                        )
+                    )
+                ));
+                
+                if ($rooms_query->have_posts()): ?>
+                <div class="rooms-tabs-controller">
+                    <div class="tabs-navigation">
+                        <?php 
+                        $tab_counter = 0;
+                        while ($rooms_query->have_posts()): $rooms_query->the_post();
+                            $accommodation_section = get_field('accommodation_page_section');
+                            if ($accommodation_section && !empty($accommodation_section['button_name'])):
+                                $tab_id = sanitize_title($accommodation_section['button_name']);
+                                $active_class = ($tab_counter === 0) ? ' active' : '';
+                        ?>
+                        <button class="tab-button<?php echo $active_class; ?>" data-tab="<?php echo $tab_id; ?>">
+                            <?php echo esc_html($accommodation_section['button_name']); ?>
+                        </button>
+                        <?php 
+                                $tab_counter++;
+                            endif;
+                        endwhile; 
+                        wp_reset_postdata();
+                        ?>
+                    </div>
+
+                    <div class="tab-content">
+                        <?php 
+                        $content_counter = 0;
+                        while ($rooms_query->have_posts()): $rooms_query->the_post();
+                            $accommodation_section = get_field('accommodation_page_section');
+                            if ($accommodation_section && !empty($accommodation_section['button_name'])):
+                                $tab_id = sanitize_title($accommodation_section['button_name']);
+                                $active_class = ($content_counter === 0) ? ' active' : '';
+                                $feature_images = $accommodation_section['feature_images'];
+                                $main_image = (!empty($feature_images) && isset($feature_images[0])) ? $feature_images[0] : null;
+                        ?>
+                        <div class="room-content<?php echo $active_class; ?>" id="<?php echo $tab_id; ?>">
+                            <div class="room-layout">
+                                <div class="room-main">
+                                    <div class="room-images">
+                                        <?php if ($main_image): ?>
+                                        <div class="main-image-container" data-room-id="<?php echo $tab_id; ?>">
+                                            <img src="<?php echo esc_url($main_image['sizes']['large'] ?? $main_image['url']); ?>"
+                                                alt="<?php echo esc_attr($accommodation_section['button_name']); ?>"
+                                                class="main-image" id="<?php echo $tab_id; ?>-main-img">
+                                        </div>
+                                        <?php endif; ?>
+                                        <div class="room-info">
+                                            <h3 class="room-name">
+                                                <?php echo esc_html($accommodation_section['button_name']); ?></h3>
+                                            <?php if (!empty($accommodation_section['key_information'])): ?>
+                                            <p class="room-size">
+                                                <?php echo esc_html($accommodation_section['key_information']); ?></p>
+                                            <?php endif; ?>
+                                            <?php if (!empty($accommodation_section['description'])): ?>
+                                            <div class="room-description">
+                                                <?php echo wp_kses_post($accommodation_section['description']); ?></div>
+                                            <?php endif; ?>
+                                            <?php if (!empty($accommodation_section['action_name'])): ?>
+                                            <button class="room-btn"
+                                                onclick="window.location.href='<?php echo get_permalink(); ?>'">
+                                                <?php echo esc_html($accommodation_section['action_name']); ?>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd"
+                                                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                                                </svg>
+                                            </button>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="room-sidebar">
+                                    <div class="thumbnail-grid">
+                                        <?php 
+                                        if (!empty($feature_images)):
+                                            $thumbnail_count = 0;
+                                            foreach ($feature_images as $image):
+                                                if ($thumbnail_count >= 4) break; // Limit to 4 thumbnails
+                                                $thumbnail_count++;
+                                        ?>
+                                        <img src="<?php echo esc_url($image['sizes']['thumbnail'] ?? $image['url']); ?>"
+                                            alt="<?php echo esc_attr($accommodation_section['button_name'] . ' View ' . $thumbnail_count); ?>"
+                                            class="thumbnail"
+                                            data-main="<?php echo esc_url($image['sizes']['large'] ?? $image['url']); ?>">
+                                        <?php 
+                                            endforeach;
+                                        endif; 
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php 
+                                $content_counter++;
+                            endif;
+                        endwhile; 
+                        wp_reset_postdata();
+                        ?>
+                    </div>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </section>
+
+    <?php if (have_rows('dining_and_cuizine_section')):  while (have_rows('dining_and_cuizine_section')): the_row(); ?>
+    <section class="dining-section" id="dining-section-id">
+        <div class="container">
+            <div class="dining-wrapper">
+                <div class="dining-header">
+                    <h2 class="dining-title"><?php the_sub_field('title') ?></h2>
+                    <div class="dining-description">
+                        <?php the_sub_field('description') ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dining-container">
+            <?php 
+                        $images = get_sub_field('gallery');
+                        if( $images ): ?>
+            <ul class="dining-slider">
+                <?php 
+                $counter = 1;
+                foreach( $images as $image ): ?>
+                <li class="dining-slider-item">
+                    <img class="image number-<?php echo $counter; ?>"
+                        src="<?php echo esc_url($image['url']); ?>"
+                        alt="<?php echo esc_attr($image['alt']); ?>" />
+                    <p><?php echo esc_html($image['caption']); ?></p>
+                </li>
+                <?php 
+                $counter++;
+                endforeach; ?>
+            </ul>
+            <?php endif; ?>
+        </div>
+    </section>
+    <?php endwhile; endif; ?>
+
+    <?php if (have_rows('yoga_and_space_section')):  while (have_rows('yoga_and_space_section')): the_row(); ?>
+    <section class="yoga-section" id="yoga-section-id">
+        <div class="container">
+            <div class="yoga-wrapper">
+                <div class="yoga-header">
+                    <h2 class="yoga-title"><?php the_sub_field('title') ?></h2>
+                    <div class="yoga-description">
+                        <?php the_sub_field('description') ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yoga-container">
+            <?php 
+                        $yoga_images = get_sub_field('gallery');
+                        if( $yoga_images ): ?>
+            <ul class="yoga-slider">
+                <?php 
+                $yoga_counter = 1;
+                foreach( $yoga_images as $image ): ?>
+                <li class="yoga-slider-item">
+                    <img class="image number-<?php echo $yoga_counter; ?>"
+                        src="<?php echo esc_url($image['url']); ?>"
+                        src="<?php echo esc_url($image['sizes']['thumbnail']); ?>"
+                        alt="<?php echo esc_attr($image['alt']); ?>" />
+                    <p><?php echo esc_html($image['caption']); ?></p>
+                </li>
+                <?php 
+                $yoga_counter++;
+                endforeach; ?>
+            </ul>
+            <?php endif; ?>
+        </div>
+    </section>
+    <?php endwhile; endif; ?>
+
+
+
+</div>
+
+<?php
+get_footer();
+?>

@@ -1,0 +1,27 @@
+// Import variables first
+@import "theme_variables";
+
+// Import Bootstrap directly if needed
+$bootstrap-sass-asset-helper: false;
+@import "~bootstrap/scss/bootstrap";
+
+// Import theme styles
+@import "theme_mixin";
+@import "theme_common";
+
+// Import hero animations (IMPORTANT: This was missing!)
+@import "theme-hero-animations";
+
+// Import theme components
+@import "theme/header";
+@import "theme/footer";
+
+@import "theme/aboutus-template";
+@import "theme/accommodation-template";
+@import "theme/ayurveda-template";
+@import "theme/contactus-template";
+@import "theme/home-template";
+@import "theme/rooms-template";
+@import "theme/blog-template";
+
+@import "theme/single-blog";

@@ -1,0 +1,277 @@
+// *****************************************
+// **    HERO ANIMATION MIXINS & STYLES   **
+// *****************************************
+
+/**
+ * REUSABLE HERO ANIMATION STYLES
+ * 
+ * This file contains common mixins and base styles for hero sections
+ * with circular clippath reveal animations.
+ * 
+ * USAGE:
+ * @include hero-animation-base;
+ * @include hero-clippath-structure;
+ * 
+ * REQUIREMENTS:
+ * - HTML structure with .hero-section, #hero-clippath, .hero-content
+ * - JavaScript with initHeroAnimation() function
+ */
+
+// Mixin for base hero animation structure
+@mixin hero-animation-base {
+	position: relative;
+	height: 100vh;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #fffbdb;
+
+	// Mobile height
+	@media (max-width: 767px) {
+		height: 60vh;
+	}
+}
+
+// Mixin for hero background and clippath structure
+@mixin hero-clippath-structure {
+	.hero-background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 2; // Image layer
+
+		.hero-image-container {
+			position: relative;
+			width: 100%;
+			height: 100%;
+
+			.hero-image-clippath {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				clip-path: circle(0% at center);
+				will-change: clip-path;
+			}
+		}
+	}
+}
+
+// Mixin for hero text layers (blue and white)
+@mixin hero-text-layers {
+	// Blue text behind clippath
+	.hero-text-back {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1; // Blue text layer (bottom)
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		pointer-events: none;
+		text-align: center;
+
+		.hero-text-wrapper {
+			position: relative;
+			display: inline-block;
+			text-align: center;
+
+			.hero-title-blue {
+				font-family: "Lavish";
+				font-size: calc(52px + (142 - 52) * ((100vw - 320px) / (1920 - 320)));
+				font-weight: 400;
+				margin: 0;
+				color: $color-2;
+				position: relative;
+				text-align: center;
+
+				@media (max-width: 1200px) {
+					font-size: 8rem;
+				}
+
+				@media (max-width: 768px) {
+					font-size: 4rem;
+				}
+
+				@media (max-width: 480px) {
+					font-size: 2.5rem;
+				}
+
+				.hero-title-line {
+					display: block;
+					position: relative;
+					text-align: center;
+				}
+			}
+		}
+	}
+
+	// White text in front of clippath
+	.hero-content {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 3; // White text layer (top)
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		pointer-events: none;
+		clip-path: circle(0% at center); // This is key for the masking effect
+		will-change: clip-path;
+		text-align: center;
+
+		.hero-text-wrapper {
+			position: relative;
+			display: inline-block;
+			text-align: center;
+
+			.hero-title-white {
+				font-family: "Lavish";
+				font-size: calc(52px + (142 - 52) * ((100vw - 320px) / (1920 - 320)));
+				font-weight: 400;
+				margin: 0;
+				color: #fff;
+				position: relative;
+				text-align: center;
+
+				@media (max-width: 1200px) {
+					font-size: 8rem;
+				}
+
+				@media (max-width: 768px) {
+					font-size: 4rem;
+				}
+
+				@media (max-width: 480px) {
+					font-size: 2.5rem;
+				}
+
+				.hero-title-line {
+					display: block;
+					position: relative;
+					text-align: center;
+				}
+			}
+		}
+	}
+}
+
+// Complete hero animation mixin (combines all above)
+@mixin hero-animation-complete {
+	@include hero-animation-base;
+	@include hero-clippath-structure;
+	@include hero-text-layers;
+}
+
+// Alternative mixin for simple hero without animation (for existing templates)
+@mixin hero-simple-overlay {
+	position: relative;
+	height: 100vh;
+	min-height: 800px;
+	display: flex;
+	align-items: center;
+
+	.hero-background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+
+		.hero-bg-image {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+		}
+
+		.hero-overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.3);
+		}
+	}
+
+	.hero-content {
+		position: relative;
+		z-index: 2;
+		width: 100%;
+		text-align: center;
+		color: white;
+
+		.hero-title {
+			font-family: "Lavish";
+			font-size: calc(52px + (142 - 52) * ((100vw - 320px) / (1920 - 320)));
+			font-weight: 400;
+			margin-bottom: 1rem;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+			text-align: center;
+
+			@media (max-width: 1024px) {
+				font-size: 5rem;
+			}
+
+			@media (max-width: 768px) {
+				font-size: 4rem;
+				margin-bottom: 2rem;
+			}
+
+			@media (max-width: 480px) {
+				font-size: 2rem;
+			}
+		}
+	}
+}
+
+// ========================================
+// GSAP LOADING STATE PREVENTION
+// ========================================
+// Prevents layout jumps while GSAP recalculates pin-spacers
+
+html.is-loading {
+	// Don't change scrollbar behavior - just prevent layout jumps
+
+	.hero-section {
+		// Ensure hero sections don't jump during GSAP init
+		will-change: transform;
+		transform: translateZ(0); // Force hardware acceleration
+	}
+
+	// Hide any potential FOUC elements
+	.hero-image-clippath,
+	.hero-content {
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	// Hide text during loading
+	.hero-title-blue,
+	.hero-title-white {
+		opacity: 0;
+		transform: scale(0.8);
+		transition: all 0.3s ease;
+	}
+}
+
+// Smooth reveal after GSAP is ready
+html:not(.is-loading) {
+	.hero-image-clippath,
+	.hero-content {
+		opacity: 1;
+	}
+}

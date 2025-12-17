@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+// Custom font - AdeDisplay
+@font-face {
+	font-family: "Lavish";
+	src: url("../../assets/fonts/lavishregular.woff2") format("woff2"),
+		url("../../assets/fonts/lavishregular.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+//Custom Scroll Bar
+/* width */
+::-webkit-scrollbar {
+	width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background-color: #fffbdb;
+	border: 1px solid #5858581b;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background-color: #58585852;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	border: 4px solid #ffffff;
+	transition: all 0.3s;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background-color: #585858;
+}
+
+/* Show the default clear button */
+input[type="search"]::-webkit-search-clear-button {
+	-webkit-appearance: searchfield-clear-button;
+	appearance: searchfield-clear-button;
+}
+
+* {
+	font-family: "Inter", sans-serif;
+	// border: 1px solid #ff6600;
+}
+
+:root {
+	color-scheme: light only;
+	--bs-offcanvas-padding-x: 30px;
+	--bs-offcanvas-padding-y: 30px;
+}
+
+html {
+	scroll-behavior: smooth;
+	scrollbar-gutter: stable;
+	height: 100%;
+	background-color: $color-1;
+}
+
+@media (forced-colors: active) {
+	body {
+		forced-color-adjust: none;
+	}
+}
+
+h1 {
+	font-size: calc(28px + (62 - 28) * ((100vw - 320px) / (1920 - 320)));
+	margin: 0;
+}
+
+h2 {
+	font-size: calc(32px + (52 - 32) * ((100vw - 320px) / (1920 - 320)));
+	margin: 0;
+}
+
+h3 {
+	font-size: calc(20px + (32 - 20) * ((100vw - 320px) / (1920 - 320)));
+	margin: 0;
+}
+
+h4 {
+	font-size: calc(18px + (28 - 18) * ((100vw - 320px) / (1920 - 320)));
+	margin: 0;
+}
+h5 {
+	font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)));
+	margin: 0;
+}
+h6 {
+	font-size: calc(12px + (15 - 12) * ((100vw - 320px) / (1920 - 320)));
+	margin: 0;
+}
+
+p {
+	font-size: calc(12px + (15 - 12) * ((100vw - 320px) / (1920 - 320)));
+	margin: 0;
+	line-height: 1.6;
+}
+a {
+	font-size: calc(12px + (15 - 12) * ((100vw - 320px) / (1920 - 320)));
+}
+
+//Add Skeleton
+.skeleton {
+	animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+	0% {
+		background-color: #a3b8c2ad;
+	}
+	100% {
+		background-color: #f0f3f536;
+	}
+}
+
+// Style error page
+.error-page {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: calc(100dvh - 90px);
+}
+
+// Image optimizer
+.optimized-img-wrapper {
+	background-size: cover;
+	background-position: center;
+	object-position: center;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	transition: opacity 0.5s ease-in-out;
+
+	img {
+		opacity: 0;
+	}
+}
+
+// owl-carousel
+.owl-carousel {
+	.owl-dots {
+		position: absolute;
+		bottom: 0px;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 100;
+
+		button {
+			span {
+				background-color: #d2e4eb !important;
+			}
+			&.active {
+				span {
+					background-color: $color-4 !important;
+				}
+			}
+		}
+	}
+}

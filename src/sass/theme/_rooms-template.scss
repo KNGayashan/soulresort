@@ -1,0 +1,774 @@
+// Additional styles to complement your existing SCSS
+.page-content {
+	&.rooms-template {
+
+		// Hero Section - Using reusable hero animation mixin
+		.hero-section {
+			@include hero-animation-complete;
+			font-family: $font-family-base-2;
+		}
+
+		.description-section {
+			padding-top: $whiteSpace;
+			overflow: hidden;
+			position: relative;
+
+			&:before {
+				content: "";
+				position: absolute;
+				top: -40px;
+				left: -120px;
+				width: 250px;
+				height: 250px;
+				background: #f2f3aebe;
+				background: radial-gradient(circle, #f2f3ae9a 19%, #bec045c8 100%);
+				border-radius: 50%;
+				filter: blur(30px);
+				z-index: 1;
+			}
+
+			&:after {
+				content: "";
+				position: absolute;
+				bottom: 30px;
+				right: -120px;
+				width: 450px;
+				height: 450px;
+				background: #f2f3aebe;
+				background: radial-gradient(circle, #f2f3ae9a 19%, #bec045c8 100%);
+				border-radius: 50%;
+				filter: blur(30px);
+				z-index: 1;
+			}
+
+			.description-wrapper {
+				z-index: 5;
+				position: sticky;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				padding-bottom: $headerWhiteSpace;
+				border-bottom: 1px solid $color-2;
+
+				// Mobile adjustments for wrapper
+				@media (max-width: 768px) {
+					padding: 30px 15px;
+				}
+
+				.description-title {
+					font-family: "Lavish", serif;
+					font-size: 56px;
+					font-weight: 400;
+					margin-bottom: 3rem;
+					text-align: center;
+					color: #28587b;
+					max-width: 700px;
+
+					@media (max-width: 768px) {
+						font-size: 36px;
+						margin-bottom: 2rem;
+						max-width: 100%;
+						padding: 0 15px;
+					}
+
+					@media (max-width: 480px) {
+						font-size: 28px;
+						margin-bottom: 1.5rem;
+					}
+				}
+
+				.description-content {
+					.description-content-wrapper {
+						display: flex;
+						justify-content: center;
+						flex-direction: column;
+
+						.description-text {
+							font-weight: 400;
+							text-align: center;
+							margin-bottom: $headerWhiteSpace;
+						}
+
+						.description-rules {
+							display: flex;
+							justify-content: center;
+							flex-wrap: wrap;
+							margin-bottom: $headerWhiteSpace;
+							max-width: 600px;
+							margin: 0 auto;
+
+							@media (max-width: 786px) {
+								justify-content: space-between;
+							}
+
+							.rule {
+								display: flex;
+								align-items: center;
+								min-width: 300px;
+
+								.rule-img {
+									width: 50px;
+									height: 50px;
+									margin-right: 10px;
+								}
+
+								.rule-text {
+									font-family: "Inter", sans-serif;
+									font-size: 16px;
+									font-weight: 600;
+									color: #28587b;
+									margin: 0;
+									width: 100%;
+
+									@media (max-width: 480px) {
+										font-size: 14px;
+									}
+								}
+							}
+						}
+
+						.rule-more-btn {
+							text-decoration: none;
+							background: transparent;
+							border: none;
+							color: $color-2;
+							padding: 10px 25px;
+							font-weight: 700;
+							font-size: calc(12px + (15 - 12) * ((100vw - 320px) / (1920 - 320)));
+							cursor: pointer;
+							transition: all 0.5s ease;
+							text-align: center;
+							margin-top: $titleSpacing;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							gap: 12px;
+
+							&:hover {
+								color: #000;
+								transform: translateY(0) scale(1.05);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.amenities-section {
+			.amenities-wrapper {
+				padding-top: $headerWhiteSpace;
+				padding-bottom: $whiteSpace;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				border-bottom: 1px solid $color-2;
+
+				// Mobile adjustments for wrapper
+				@media (max-width: 768px) {
+					padding: 30px 15px;
+				}
+
+				.amenities-title {
+					font-family: "Lavish", serif;
+					font-weight: 400;
+					color: $color-2;
+					margin-bottom: $headerWhiteSpace;
+
+					@media (max-width: 1024px) {
+						flex: none;
+						text-align: center;
+					}
+				}
+
+				.accordion {
+					flex: 1;
+					width: 70%;
+
+					@include media-breakpoint-down(md) {
+						width: 100%;
+					}
+
+					.accordion-item {
+						border-radius: 0;
+						border: none;
+						border-bottom: 1px solid $color-2;
+						margin-bottom: 0;
+
+						&:first-child {
+							border-top: 1px solid $color-2;
+						}
+
+						.accordion-header {
+							margin-bottom: 0;
+
+							.accordion-button {
+								background: transparent;
+								border: none;
+								padding: 25px 0;
+								box-shadow: none;
+								display: flex;
+								justify-content: space-between;
+								align-items: center;
+								width: 100%;
+								text-align: left;
+								transition: all 0.3s ease;
+								user-select: none;
+
+								@media (max-width: 480px) {
+									padding: 20px 0;
+								}
+
+								&:not(.collapsed) {
+									background: transparent;
+									box-shadow: none;
+									color: #28587b;
+
+									&::after {
+										transform: rotate(180deg);
+									}
+								}
+
+								&:focus {
+									box-shadow: none;
+									border: none;
+								}
+
+								&:hover {
+									.accordion-title {
+										color: #1e4a66;
+									}
+								}
+
+								&::after {
+									background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2328587b'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+									width: 20px;
+									height: 20px;
+									transition: transform 0.3s ease;
+								}
+
+								.accordion-title {
+									font-family: "Lavish", serif;
+									font-size: 24px;
+									font-weight: 400;
+									color: #28587b;
+									margin: 0;
+									transition: color 0.3s ease;
+
+									@media (max-width: 768px) {
+										font-size: 22px;
+									}
+
+									@media (max-width: 480px) {
+										font-size: 20px;
+									}
+								}
+							}
+						}
+
+						.accordion-collapse {
+							.accordion-body {
+								padding: 0 0 25px 0;
+
+								@media (max-width: 480px) {
+									padding: 0 0 20px 0;
+								}
+
+								.amenities-grid {
+									display: grid;
+									grid-template-columns: repeat(2, 1fr);
+									gap: 15px 30px;
+
+									@media (max-width: 768px) {
+										grid-template-columns: 1fr;
+										gap: 12px;
+									}
+
+									.amenity-item {
+										display: flex;
+										align-items: flex-start;
+										font-family: "Inter", sans-serif;
+										font-size: 14px;
+										font-weight: 400;
+										color: #666;
+										line-height: 1.4;
+
+										@media (max-width: 480px) {
+											font-size: 13px;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.gallery-section {
+			background: transparent;
+			overflow: hidden;
+			position: relative;
+
+			&:before {
+				content: "";
+				position: absolute;
+				bottom: 100px;
+				right: -60px;
+				width: 340px;
+				height: 340px;
+				background: #f2f3ae;
+				background: radial-gradient(circle, #f2f3aebb 19%, #bec045ab 100%);
+				border-radius: 50%;
+				filter: blur(30px);
+				z-index: 1;
+			}
+
+			&:after {
+				content: "";
+				position: absolute;
+				top: 40px;
+				left: -60px;
+				width: 220px;
+				height: 220px;
+				background: #f2f3ae;
+				background: radial-gradient(circle, #f2f3ae 19%, #bec045 100%);
+				border-radius: 50%;
+				filter: blur(30px);
+				z-index: 1;
+			}
+
+			.gallery-wrapper {
+				z-index: 5;
+				position: sticky;
+				padding: 50px 0px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				border-bottom: 1px solid #28587b;
+
+				.masonry-gallery {
+					width: 100%;
+					position: relative;
+					display: block !important; // Force it to be visible
+					opacity: 1 !important; // Force opacity
+					visibility: visible !important; // Force visibility
+					transition: opacity 0.5s ease;
+
+					// CSS Column Masonry Layout (like reference)
+					column-count: 2;
+					column-gap: 15px;
+					column-fill: balance;
+
+					@media (min-width: 768px) {
+						column-count: 3;
+					}
+
+					@media (min-width: 992px) {
+						column-count: 4;
+					}
+
+					@media (min-width: 1200px) {
+						column-count: 5;
+					}
+
+					.brick {
+						box-sizing: border-box;
+						-webkit-column-break-inside: avoid;
+						page-break-inside: avoid;
+						break-inside: avoid;
+						margin-bottom: 15px;
+						position: relative;
+						overflow: hidden;
+						border-radius: 12px;
+						box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+						transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+						cursor: pointer;
+						background: #f8f9fa;
+						display: inline-block;
+						width: 100%;
+
+						&:hover {
+							transform: translateY(-8px) scale(1.02);
+							box-shadow: 0 12px 40px rgba(40, 88, 123, 0.2);
+
+							.brick-overlay {
+								opacity: 1;
+								visibility: visible;
+							}
+
+							.brick-image {
+								transform: scale(1.05);
+								filter: brightness(1.1);
+							}
+						}
+
+						.brick-inner {
+							position: relative;
+							width: 100%;
+							overflow: hidden;
+						}
+
+						.brick-image {
+							width: 100%;
+							height: auto;
+							object-fit: cover;
+							transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+							display: block;
+							cursor: pointer;
+							transition: transform 0.3s ease, filter 0.3s ease;
+						}
+
+						.brick-overlay {
+							position: absolute;
+							bottom: 0;
+							left: 0;
+							right: 0;
+							background: linear-gradient(to top,
+									rgba(0, 0, 0, 0.8) 0%,
+									rgba(0, 0, 0, 0.4) 50%,
+									transparent 100%);
+							opacity: 0;
+							visibility: hidden;
+							transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+							.brick-overlay-content {
+								padding: 20px;
+								color: white;
+
+								@media (max-width: 768px) {
+									padding: 15px;
+								}
+
+								.brick-caption {
+									font-family: "Inter", sans-serif;
+									font-size: 14px;
+									font-weight: 500;
+									margin: 0;
+									line-height: 1.4;
+
+									@media (max-width: 768px) {
+										font-size: 12px;
+									}
+								}
+							}
+						}
+					}
+
+					.gallery-empty {
+						column-span: all;
+						text-align: center;
+						padding: 60px 20px;
+						color: #666;
+						font-family: "Inter", sans-serif;
+						font-size: 18px;
+
+						p {
+							margin: 0;
+						}
+					}
+				}
+
+				// Skeleton loading styles
+				.gallery-skeleton {
+					display: none;
+					width: 100%;
+					opacity: 0;
+					transition: opacity 0.3s ease;
+
+					// Column layout for skeleton too
+					column-count: 2;
+					column-gap: 15px;
+					column-fill: balance;
+
+					@media (min-width: 768px) {
+						column-count: 3;
+						column-gap: 20px;
+					}
+
+					@media (min-width: 992px) {
+						column-count: 4;
+						column-gap: 25px;
+					}
+
+					@media (min-width: 1200px) {
+						column-count: 5;
+						column-gap: 30px;
+					}
+
+					&.loading {
+						display: block;
+						opacity: 1;
+					}
+
+					.skeleton-item {
+						box-sizing: border-box;
+						-webkit-column-break-inside: avoid;
+						page-break-inside: avoid;
+						break-inside: avoid;
+						margin-bottom: 15px;
+						background: linear-gradient(90deg,
+								#f0f0f0 25%,
+								#e0e0e0 50%,
+								#f0f0f0 75%);
+						background-size: 200% 100%;
+						animation: skeleton-loading 1.5s infinite;
+						border-radius: 12px;
+						position: relative;
+						overflow: hidden;
+						display: inline-block;
+						width: 100%;
+
+						@media (min-width: 768px) {
+							margin-bottom: 20px;
+						}
+
+						@media (min-width: 992px) {
+							margin-bottom: 25px;
+						}
+
+						// Different heights for variety
+						&.tall {
+							height: 400px;
+
+							@media (max-width: 768px) {
+								height: 350px;
+							}
+						}
+
+						&.normal {
+							height: 300px;
+
+							@media (max-width: 768px) {
+								height: 250px;
+							}
+						}
+
+						&.wide {
+							height: 200px;
+
+							@media (max-width: 768px) {
+								height: 180px;
+							}
+						}
+
+						&::before {
+							content: "";
+							position: absolute;
+							top: 0;
+							left: -100%;
+							width: 100%;
+							height: 100%;
+							background: linear-gradient(90deg,
+									transparent,
+									rgba(255, 255, 255, 0.4),
+									transparent);
+							animation: skeleton-shimmer 2s infinite;
+						}
+					}
+				}
+			}
+
+			.lightbox-model {
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.95);
+				z-index: 10002;
+				opacity: 0;
+				transition: opacity 0.3s ease;
+
+				&.active {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					opacity: 1;
+				}
+
+				.lightbox-close,
+				.lightbox-prev,
+				.lightbox-next {
+					position: absolute;
+					background: rgba(255, 255, 255, 0.1);
+					border: none;
+					color: #fff;
+					font-size: 40px;
+					cursor: pointer;
+					padding: 10px 15px;
+					transition: background 0.3s ease;
+					z-index: 10000;
+					backdrop-filter: blur(10px);
+					border-radius: 4px;
+
+					&:hover {
+						background: rgba(255, 255, 255, 0.2);
+					}
+				}
+
+				.lightbox-close {
+					top: 20px;
+					right: 20px;
+					width: 50px;
+					height: 50px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					line-height: 1;
+
+					@media (max-width: 768px) {
+						top: 10px;
+						right: 10px;
+						width: 40px;
+						height: 40px;
+						font-size: 30px;
+					}
+				}
+
+				.lightbox-prev,
+				.lightbox-next {
+					top: 50%;
+					transform: translateY(-50%);
+					width: 60px;
+					height: 60px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+
+					@media (max-width: 768px) {
+						width: 45px;
+						height: 45px;
+						font-size: 30px;
+					}
+				}
+
+				.lightbox-prev {
+					left: 20px;
+
+					@media (max-width: 768px) {
+						left: 10px;
+					}
+				}
+
+				.lightbox-next {
+					right: 20px;
+
+					@media (max-width: 768px) {
+						right: 10px;
+					}
+				}
+
+				.lightbox-content {
+					position: relative;
+					max-width: 90%;
+					max-height: 90vh;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					animation: lightboxZoom 0.5s ease;
+
+					@media (max-width: 768px) {
+						max-width: 95%;
+					}
+
+					.lightbox-image {
+						max-width: 100%;
+						max-height: 85vh;
+						width: auto;
+						height: auto;
+						object-fit: contain;
+						border-radius: 4px;
+						box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+
+						@media (max-width: 768px) {
+							max-height: 80vh;
+						}
+					}
+
+					.lightbox-caption {
+						color: #fff;
+						font-size: 16px;
+						margin-top: 15px;
+						text-align: center;
+						max-width: 600px;
+						padding: 0 20px;
+
+						@media (max-width: 768px) {
+							font-size: 14px;
+							margin-top: 10px;
+						}
+					}
+				}
+
+				@keyframes lightboxZoom {
+					from {
+						transform: scale(0.8);
+						opacity: 0;
+					}
+
+					to {
+						transform: scale(1);
+						opacity: 1;
+					}
+				}
+			}
+		}
+
+		// Skeleton loading animations
+		@keyframes skeleton-loading {
+			0% {
+				background-position: -200% 0;
+			}
+
+			100% {
+				background-position: 200% 0;
+			}
+		}
+
+		@keyframes skeleton-shimmer {
+			0% {
+				left: -100%;
+			}
+
+			100% {
+				left: 100%;
+			}
+		}
+
+		// Image loading states
+		.brick-image {
+			opacity: 1; // Default visible state
+			transition: opacity 0.3s ease;
+
+			&.loading {
+				opacity: 0.7; // Still somewhat visible while loading
+			}
+
+			&.loaded {
+				opacity: 1;
+			}
+
+			&.error {
+				opacity: 0.5;
+				filter: grayscale(100%);
+			}
+		}
+
+		// Fallback CSS animations for when GSAP is not available
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(30px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+	}
+}

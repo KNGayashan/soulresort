@@ -1,0 +1,426 @@
+.page-content {
+	&.contactus-template {
+		background-color: $color-1;
+		// Hero Section
+		.hero-section {
+			position: relative;
+			height: 100vh;
+			display: flex;
+			align-items: center;
+
+			&:after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+				background: linear-gradient(180deg, #00000038 0%, #0000004d 100%);
+			}
+
+			.hero-background {
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+
+				.hero-bg-image {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+				}
+			}
+
+			.hero-content {
+				position: relative;
+				z-index: 2;
+				width: 100%;
+				text-align: center;
+				color: white;
+
+				.contact-info-section {
+					margin-top: $headerWhiteSpace;
+					position: relative;
+					transform: translateY(20%);
+
+					.hero-title {
+						font-family: "Lavish", serif;
+						font-weight: 400;
+						font-size: calc(
+							48px + (102 - 48) * ((100vw - 320px) / (1920 - 320))
+						);
+						margin-bottom: $titleSpacing;
+						text-shadow: 2px 2px 4px #00000080;
+						z-index: 12;
+						position: sticky;
+					}
+
+					.contact-info-content {
+						min-height: calc(
+							440px + (560 - 440) * ((100vw - 320px) / (1920 - 320))
+						);
+						position: relative;
+						width: 100%;
+
+						&::before {
+							content: "";
+							position: absolute;
+							inset: 0;
+							width: 100%;
+							height: 100%;
+							background: linear-gradient(180deg, #00000038 0%, #0000004d 100%);
+							z-index: 3;
+						}
+
+						.contact-info-bg {
+							position: absolute;
+							inset: 0;
+							width: 100%;
+							height: 100%;
+							z-index: 2;
+
+							img {
+								width: 100%;
+								height: 100%;
+								object-fit: cover;
+							}
+						}
+
+						.inner_content {
+							min-height: calc(
+								440px + (560 - 440) * ((100vw - 320px) / (1920 - 320))
+							);
+							z-index: 12;
+							position: sticky;
+							display: flex;
+							align-items: flex-end;
+							padding-bottom: $titleSpacing;
+
+							.contact-item {
+								text-align: center;
+
+								.email-btn {
+									text-decoration: none;
+									color: $color-9;
+								}
+
+								.pn_numbers {
+									display: flex;
+									flex-direction: column;
+									gap: 8px;
+
+									.call-btn {
+										text-decoration: none;
+										color: $color-9;
+									}
+								}
+
+								.address-text {
+									max-width: 200px;
+									margin: 0 auto;
+									line-height: 1.5;
+								}
+
+								h3 {
+									font-family: "Lavish", serif;
+									font-weight: 600;
+									margin-bottom: 1rem;
+									color: white;
+								}
+
+								p {
+									font-weight: 400;
+									margin-bottom: 0.5rem;
+									color: $color-9;
+									line-height: 1;
+								}
+
+								a {
+									&:hover {
+										text-decoration: underline;
+									}
+								}
+
+								.social-icons {
+									display: flex;
+									justify-content: center;
+									gap: 1rem;
+									margin-top: 1rem;
+
+									.social-icon {
+										display: inline-block;
+										width: 20px;
+										height: 20px;
+
+										img {
+											width: 100%;
+											height: 100%;
+											object-fit: contain;
+										}
+									}
+								}
+							}
+
+							.address {
+								border-left: 1px solid white;
+								border-right: 1px solid white;
+
+								@include media-breakpoint-down(md) {
+									border-left: none;
+									border-right: none;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// Get in Touch Section
+		.get-in-touch-section {
+			padding-top: calc(56px + (216 - 56) * ((100vw - 320px) / (1920 - 320)));
+			position: relative;
+			overflow: hidden;
+
+			&:before {
+				content: "";
+				position: absolute;
+				bottom: 50px;
+				left: -60px;
+				width: 320px;
+				height: 320px;
+				background: #f2f3ae;
+				background: radial-gradient(circle, #f2f3ae9c 19%, #bec045b7 100%);
+				border-radius: 50%;
+				filter: blur(40px);
+				z-index: 1;
+			}
+			&:after {
+				content: "";
+				position: absolute;
+				top: -80px;
+				right: -60px;
+				width: 220px;
+				height: 220px;
+				background: #f2f3ae;
+				background: radial-gradient(circle, #f2f3ae 19%, #bec045 100%);
+				border-radius: 50%;
+				filter: blur(30px);
+				z-index: 1;
+			}
+
+			@include media-breakpoint-down(md) {
+				margin-top: 0;
+			}
+
+			.section-title {
+				font-family: "Lavish", serif;
+				text-align: center;
+				color: $color-2;
+				padding-bottom: $titleSpacing;
+				font-weight: 400;
+				z-index: 12;
+				position: sticky;
+			}
+
+			.section-subtitle {
+				font-weight: 400;
+				text-align: center;
+				max-width: 800px;
+				margin: 0 auto;
+				line-height: 1.3;
+				padding-bottom: $headerWhiteSpace;
+				z-index: 12;
+				position: sticky;
+			}
+
+			.contact-form {
+				max-width: 1000px;
+				margin: 0 auto;
+				z-index: 12;
+				position: sticky;
+
+				// Forminator form styling
+				.forminator-ui,
+				.forminator-form {
+					// Override default Forminator styles
+					* {
+						box-sizing: border-box;
+					}
+
+					// Form wrapper styling
+					.forminator-form-wrapper {
+						background: none !important;
+						border: none !important;
+						box-shadow: none !important;
+					}
+
+					// Form row and field styling
+					.forminator-row {
+						margin-bottom: 0 !important;
+					}
+
+					.forminator-col,
+					.forminator-field {
+						margin-bottom: 1.5rem;
+						padding-bottom: 0 !important;
+
+						.forminator-icon-calendar {
+							&:before {
+								color: $color-2;
+							}
+						}
+
+						// Input field styling
+						input[type="text"],
+						input[type="email"],
+						input[type="tel"],
+						input[type="date"],
+						input[type="number"],
+						textarea,
+						select {
+							border: none;
+							border-bottom: 1px solid $color-2;
+							font-family: "Lavish", serif !important;
+							width: 100% !important;
+							border-radius: 0 !important;
+							font-size: calc(
+								14px + (18 - 14) * ((100vw - 320px) / (1920 - 320))
+							);
+							background: transparent !important;
+							color: $color-10 !important;
+							box-shadow: none !important;
+
+							&:focus {
+								outline: none !important;
+								border: none !important;
+								border-color: transparent !important;
+								box-shadow: 0 0 0 0.2rem #007bff40 !important;
+							}
+
+							&::placeholder {
+								color: #28587b !important;
+								opacity: 0.7 !important;
+								font-family: "Lavish", serif !important;
+							}
+						}
+
+						textarea {
+							resize: vertical !important;
+						}
+
+						// Label styling
+						.forminator-label {
+							font-family: "Lavish", serif !important;
+							font-size: calc(
+								18px + (24 - 18) * ((100vw - 320px) / (1920 - 320))
+							) !important;
+							font-weight: 400 !important;
+							color: #28587b !important;
+							margin-bottom: 0.5rem !important;
+							display: block !important;
+						}
+					}
+
+					// Checkbox and radio styling
+					.forminator-checkbox,
+					.forminator-radio {
+						border: none !important;
+						margin-bottom: 1.5rem !important;
+
+						.forminator-label {
+							font-family: "Lavish", serif !important;
+							font-size: 24px !important;
+							color: #28587b !important;
+						}
+
+						label {
+							font-size: 0.95rem !important;
+							color: #666 !important;
+							display: flex !important;
+							align-items: center !important;
+							margin-bottom: 0.5rem !important;
+						}
+
+						input[type="checkbox"],
+						input[type="radio"] {
+							margin-right: 0.5rem !important;
+							width: auto !important;
+							border-bottom: none !important;
+						}
+					}
+
+					// Submit button styling
+					.forminator-button,
+					.forminator-button-submit {
+						color: $color-2 !important;
+						background: transparent !important;
+						border: none !important;
+						font-size: 16px !important;
+						font-weight: 700 !important;
+						cursor: pointer !important;
+						margin-top: 1rem !important;
+						padding: 0 !important;
+
+						&:hover {
+							background: transparent !important;
+							box-shadow: none !important;
+						}
+
+						&:focus {
+							outline: none !important;
+							box-shadow: none !important;
+						}
+					}
+
+					// Error styling
+					.forminator-error {
+						color: #dc3545 !important;
+						font-size: 14px !important;
+						margin-top: 0.25rem !important;
+					}
+
+					// Success styling
+					.forminator-success {
+						background: #d4edda !important;
+						color: #155724 !important;
+						border: 1px solid #c3e6cb !important;
+						padding: 1rem !important;
+						border-radius: 4px !important;
+						margin-bottom: 1rem !important;
+					}
+				}
+			}
+		}
+
+		// How to Find Us Section
+		.how-to-find-section {
+			padding-bottom: $whiteSpace;
+
+			.section-title {
+				font-family: "Lavish", serif;
+				text-align: center;
+				color: $color-2;
+				margin-bottom: $titleSpacing;
+				font-weight: 400;
+			}
+
+			.map-container {
+				.map-wrapper {
+					border-radius: 15px;
+					overflow: hidden;
+					box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+					iframe {
+						width: 100%;
+						height: calc(
+							450px + (600 - 450) * ((100vw - 320px) / (1920 - 320))
+						);
+						border: none;
+					}
+				}
+			}
+		}
+	}
+}

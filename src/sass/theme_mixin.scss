@@ -1,0 +1,81 @@
+// Container left padding
+$container-max-widths: (
+	sm: 540px,
+	md: 720px,
+	lg: 960px,
+	xl: 1140px,
+	xxl: 1334px,
+);
+
+@mixin dynamic-padding($screen-size: lg) {
+	$container-width: map-get($container-max-widths, $screen-size);
+	$container-min-width: 320px; // Set this based on your design requirements
+
+	$padding-left: unquote(
+		"calc((100vw - #{$container-width} + 15px) / 2)"
+	); //remove + 15px if add container fluid
+
+	padding-left: $padding-left;
+}
+@mixin dynamic-padding-right($screen-size: lg) {
+	$container-width-right: map-get($container-max-widths, $screen-size);
+	$container-min-width-right: 320px; // Set this based on your design requirements
+
+	$padding-right: unquote(
+		"calc((100vw - #{$container-width-right} + 15px) / 2)"
+	); //remove + 15px if add container fluid
+
+	padding-right: $padding-right;
+}
+
+@mixin side-dynamic-padding() {
+	@include media-breakpoint-up(sm) {
+		@include dynamic-padding(sm);
+	}
+	@include media-breakpoint-up(md) {
+		@include dynamic-padding(md);
+	}
+	@include media-breakpoint-up(lg) {
+		@include dynamic-padding(lg);
+	}
+	@include media-breakpoint-up(xl) {
+		@include dynamic-padding(xl);
+	}
+
+	@include media-breakpoint-up(xxl) {
+		@include dynamic-padding(xxl);
+	}
+}
+// Right padding
+@mixin side-dynamic-padding-right() {
+	@include media-breakpoint-up(sm) {
+		@include dynamic-padding-right(sm);
+	}
+	@include media-breakpoint-up(md) {
+		@include dynamic-padding-right(md);
+	}
+	@include media-breakpoint-up(lg) {
+		@include dynamic-padding-right(lg);
+	}
+	@include media-breakpoint-up(xl) {
+		@include dynamic-padding-right(xl);
+	}
+
+	@include media-breakpoint-up(xxl) {
+		@include dynamic-padding-right(xxl);
+	}
+}
+
+// Hero animation mixin
+@mixin hero-animation-complete {
+	opacity: 0;
+	transform: translateY(30px);
+	animation: heroFadeIn 1s ease-out forwards;
+
+	@keyframes heroFadeIn {
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+}
