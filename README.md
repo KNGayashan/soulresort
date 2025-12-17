@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TravelViby Theme
 
 A modern WordPress theme for travel and lifestyle websites.
@@ -69,3 +70,7 @@ npm run watch
 - GSAP timeline optimization
 - Reduced motion support for accessibility
 - Efficient event handling with proper cleanup
+=======
+# soulresort
+soulresort wordpress theme
+>>>>>>> b15f6d44aba1730f18fa617db173fab7983949fb
