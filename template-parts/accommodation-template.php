@@ -309,7 +309,7 @@ defined( 'ABSPATH' ) || exit;
     </section>
 
     <?php if (have_rows('dining_and_cuizine_section')):  while (have_rows('dining_and_cuizine_section')): the_row(); ?>
-    <section class="dining-section" id="dining-section-id">
+    <section class="dining-section" id="dining-cuisine">
         <div class="container">
             <div class="dining-wrapper">
                 <div class="dining-header">
@@ -344,7 +344,7 @@ defined( 'ABSPATH' ) || exit;
     <?php endwhile; endif; ?>
 
     <?php if (have_rows('yoga_and_space_section')):  while (have_rows('yoga_and_space_section')): the_row(); ?>
-    <section class="yoga-section" id="yoga-section-id">
+    <section class="yoga-section" id="yoga-and-space">
         <div class="container">
             <div class="yoga-wrapper">
                 <div class="yoga-header">

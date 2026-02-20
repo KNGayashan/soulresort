@@ -16,9 +16,6 @@ defined( 'ABSPATH' ) || exit;
         <div class="hero-background">
             <div class="hero-image-container">
                 <?php 
-                // For ACF integration, replace the hardcoded URL with:
-                // $hero_image = get_field('hero_background_image');
-                // $hero_image_url = $hero_image ? $hero_image['url'] : 'default-image-url';
                 $hero_image = get_sub_field('hero_banner'); 
                 $hero_image_url = $hero_image ? $hero_image : 'default-image-url';
                 ?>
@@ -53,7 +50,7 @@ defined( 'ABSPATH' ) || exit;
     </section>
     <?php endwhile; endif; ?>
 
-    <section class="immunity_section" id="immunity-section-id">
+    <section class="immunity_section" id="immunity-wellness">
         <div class="container-fluid">
             <div class="content_relative">
                 <div class="fixed_content_wrapper">
@@ -62,21 +59,46 @@ defined( 'ABSPATH' ) || exit;
                             <div class="content_wrapper">
                                 <div class="items">
                                     <?php if (have_rows('immunity_wellness')):  while (have_rows('immunity_wellness')): the_row(); ?>
-                                    <div class="single_item first px-5">
+                                    <div class="single_item first px-md-5">
                                         <h2 class="title">
                                             <?php echo get_sub_field('title') ?: 'Immunity Wellness'; ?>
                                         </h2>
-                                        <div class="description px-5">
+                                        <div class="description px-md-5">
                                             <?php echo get_sub_field('description') ?: '<p>The ancient science of Ayurveda teaches us that the body can be empowered as a natural defence against disease, with nature providing the remedies for various ailments.</p>'; ?>
+                                        </div>
+                                        <div class="mobile_image_wellness d-md-none">
+                                            <?php 
+                                            $top_left_image_img = get_sub_field('top_image_');
+                                            if ($top_left_image_img && is_array($top_left_image_img) && isset($top_left_image_img['url'])): ?>
+                                                <img src="<?php echo esc_url($top_left_image_img['url']); ?>"
+                                                    alt="<?php echo esc_attr($top_left_image_img['alt'] ?? ''); ?>"
+                                                    class="img-fluid image">
+                                            <?php elseif ($top_left_image_img && is_string($top_left_image_img)): ?>
+                                                <img src="<?php echo esc_url($top_left_image_img); ?>" alt=""
+                                                    class="img-fluid image">
+                                            <?php else: ?>
+                                                <img src="" alt="Default Image" class="img-fluid image">
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                     <?php endwhile; endif; if (have_rows('what_is_ayurveda')):  while (have_rows('what_is_ayurveda')): the_row(); ?>
-                                    <div class="single_item second px-3">
+                                    <div class="single_item second px-md-5">
                                         <h2 class="title">
                                             <?php echo get_sub_field('title') ?: 'What is Ayurveda?'; ?>
                                         </h2>
-                                        <div class="description px-5">
+                                        <div class="description px-md-5">
                                             <?php echo get_sub_field('description') ?: '<p>Ayurveda, derived from the Sanskrit words "Ayur" meaning "Life" and "Veda" meaning "Science" or "Knowledge," is the ancient science of living well.</p>'; ?>
+                                        </div>
+                                        <div class="mobile_image_ayurveda d-md-none">
+                                            <?php 
+                                            $bottom_left_image_imu = get_sub_field('top_image');
+                                            if ($bottom_left_image_imu && is_array($bottom_left_image_imu) && isset($bottom_left_image_imu['url'])): ?>
+                                                <img src="<?php echo esc_url($bottom_left_image_imu['url']); ?>"
+                                                    alt="<?php echo esc_attr($bottom_left_image_imu['alt'] ?? ''); ?>"
+                                                    class="img-fluid image">
+                                            <?php else: ?>
+                                                <img src="" alt="Default Image" class="img-fluid image">
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                     <?php endwhile; endif; ?>
@@ -85,7 +107,7 @@ defined( 'ABSPATH' ) || exit;
                         </div>
                     </div>
                 </div>
-                <div class="images_content_wrapper">
+                <div class="images_content_wrapper d-none d-md-block">
                     <?php if (have_rows('immunity_wellness')):  while (have_rows('immunity_wellness')): the_row(); ?>
                     <div class="image_row first_image_row">
                         <div class="row justify-content-between">
@@ -162,7 +184,7 @@ defined( 'ABSPATH' ) || exit;
     </section>
 
     <?php if (have_rows('therapies_section')):  while (have_rows('therapies_section')): the_row(); ?>
-    <section class="therapies-section" id="therapies-section-id">
+    <section class="therapies-section" id="range-of-therapies">
         <div class="container">
             <div class="therapies-wrapper">
                 <div class="therapies-header">
@@ -204,9 +226,8 @@ defined( 'ABSPATH' ) || exit;
                                     <h1 class="expanded-title">
                                         <?php echo get_sub_field('title') ?: 'Panchakarma Detox'; ?></h1>
                                     <div class="expanded-description">
-                                        <?php echo get_sub_field('popup_content') ?: 'Panchakarma, meaning “five actions,” is Ayurveda'; ?>
+                                        <?php echo get_sub_field('popup_content') ?: 'Panchakarma, meaning "five actions," is Ayurveda'; ?>
                                     </div>
-                                    <!-- <button class="close-btn" onclick="hideMoreContent(this)">Close</button> -->
                                 </div>
                             </div>
                             <div class="slide_active_overlay">
@@ -251,7 +272,7 @@ defined( 'ABSPATH' ) || exit;
     </div>
 
     <?php if (have_rows('ayurveda_cuisine_section')):  while (have_rows('ayurveda_cuisine_section')): the_row(); ?>
-    <section class="cuisine-section" id="cuisine-section-id">
+    <section class="cuisine-section" id="ayurveda-cuisine">
         <div class="container">
             <div class="cuisine-wrapper">
                 <div class="row">
@@ -293,6 +314,6 @@ defined( 'ABSPATH' ) || exit;
     <?php endwhile; endif; ?>
 
 
-    <?php
+<?php
 get_footer();
 ?>

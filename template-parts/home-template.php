@@ -153,7 +153,7 @@ defined( 'ABSPATH' ) || exit;
         </div>
     </section>
 
-    <section class="section-3" id="section-3-id">
+    <section class="section-3" id="soul-story">
         <div class="background_image">
             <img src="" alt="" class="img-fluid image" id="section3Background">
         </div>
@@ -221,7 +221,7 @@ defined( 'ABSPATH' ) || exit;
     <?php endwhile; endif; ?>
 
     <?php if (have_rows('ayuruweda_section')):  while (have_rows('ayuruweda_section')): the_row(); ?>
-    <section class="section-4" id="section-4-id">
+    <section class="section-4" id="ayurveda-at-soul">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-6">
@@ -257,7 +257,7 @@ defined( 'ABSPATH' ) || exit;
     <?php endwhile; endif; ?>
 
     <?php if (have_rows('blogs_section')):  while (have_rows('blogs_section')): the_row(); ?>
-    <section class="section-5" id="section-5-id">
+    <section class="section-5" id="soul-blogs">
         <div class="background_image">
             <?php 
                         $section_5_banner_image = get_sub_field('background_image');
@@ -337,7 +337,8 @@ defined( 'ABSPATH' ) || exit;
             <!-- View All Button -->
             <?php if (have_rows('btn_action')):  while (have_rows('btn_action')): the_row(); ?>
             <div class="blog-view-all">
-                <a href="<?php echo esc_url(get_permalink(get_option('btn_url'))); ?>" class="view-all-btn">
+                <!-- <a href="<?php echo esc_url(get_permalink(get_option('btn_url'))); ?>" class="view-all-btn"> -->
+                <a href="<?php echo esc_url(get_sub_field('btn_url')); ?>" class="view-all-btn">
                     <span><?php the_sub_field('btn_name') ?></span>
                     <svg width="29" height="12" viewBox="0 0 29 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 6.53192H28M28 6.53192L21.6901 1M28 6.53192L21.6901 11" stroke="white" />
@@ -355,7 +356,7 @@ defined( 'ABSPATH' ) || exit;
         $section_active = get_sub_field('section_active');
         $section_class = 'section-6' . ($section_active ? '' : ' d-none');
     ?>
-    <section class="<?php echo esc_attr($section_class); ?>" id="section-6-id">
+    <section class="<?php echo esc_attr($section_class); ?>" id="soul-offers">
         <div class="background_image">
             <?php 
                         $section_5_banner_image = get_sub_field('background_image');

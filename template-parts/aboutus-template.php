@@ -72,7 +72,7 @@ defined( 'ABSPATH' ) || exit;
 
         <!-- Vision Philosophy Section -->
         <?php if (have_rows('philosophy_section')):  while (have_rows('philosophy_section')): the_row(); ?>
-        <div class="vision-section" id="vision-section-id">
+        <div class="vision-section" id="soul-vision">
             <div class="container">
                 <div class="content_wrapper">
                     <div class="row align-items-center">

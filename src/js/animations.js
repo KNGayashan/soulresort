@@ -419,6 +419,10 @@ function initSereneTitleAnimation(pageSelector, customConfig = {}) {
 		.to(secondLine, { xPercent: -110, ease: "none" }, 0); // Right to Left continuously
 }
 
+
+
+
+
 // ========================================
 // IMMUNITY SECTION ANIMATION SYSTEM
 // ========================================
@@ -432,9 +436,11 @@ const DEFAULT_IMMUNITY_CONFIG = {
 	scrub: 1, // Smooth scrubbing
 	debug: false,
 	// Content transition timing
-	firstContentEnd: 0.4, // First content disappears at 40% of scroll (earlier timing)
-	// secondContentStart is calculated to start AFTER first content completely fades
-	contentGap: 0.3, // Gap between first and second content (no overlap)
+	firstContentStart: 0.25, // First content appears at 25% of scroll
+	firstContentEnd: 0.5, // First content disappears at 50% of scroll
+	secondContentStart: 0.5, // Second content appears at 50% of scroll
+	secondContentEnd: 0.75, // Second content disappears at 75% of scroll
+	contentHideEnd: 1, // Content wrapper hides at end of section
 	// Image movement speed
 	imageMoveSpeed: 0.8, // How fast side images move (0.5 = slower, 1.5 = faster)
 };
@@ -507,40 +513,97 @@ function initImmunitySectionAnimation(pageSelector, customConfig = {}) {
 	const cfg = { ...DEFAULT_IMMUNITY_CONFIG, ...customConfig };
 
 	// Set initial states - Keep content visible initially
-	gsap.set(firstItem, { opacity: 1, y: 0 });
-	gsap.set(secondItem, { opacity: 0, y: 50 });
-	gsap.set(contentWrapper, { opacity: 1, y: 0 }); // Ensure content wrapper is visible
+	gsap.set(firstItem, { opacity: 0 });
+	gsap.set(secondItem, { opacity: 0 });
+	gsap.set(contentWrapper, { opacity: 1 }); // Ensure content wrapper is visible
 
-	// Create main timeline for immunity section - NO PINNING
-	const immunityTimeline = gsap.timeline({
-		scrollTrigger: {
-			trigger: immunitySection,
-			start: "top center", // Fixed start position
-			end: "bottom center", // Fixed end position
-			scrub: cfg.scrub,
-			markers: cfg.debug,
-			// REMOVED: pin: contentWrapper - No pinning to prevent hiding
-			// REMOVED: pinSpacing: false - No pinning needed
-			// REMOVED: anticipatePin: 1 - No pinning needed
-			invalidateOnRefresh: false, // Prevent invalidation issues
-			refreshPriority: "high", // High priority refresh
-			fastScrollEnd: true, // Better fast scroll handling
-			// Add more debugging
-			onEnter: () => console.log("🚀 ScrollTrigger ENTERED immunity section"),
-			onLeave: () => console.log("👋 ScrollTrigger LEFT immunity section"),
-			onEnterBack: () =>
-				console.log("🔄 ScrollTrigger ENTERED BACK immunity section"),
-			onLeaveBack: () =>
-				console.log("⬅️ ScrollTrigger LEFT BACK immunity section"),
-			// Add refresh event handler
-			onRefresh: () =>
-				console.log("🔄 ScrollTrigger REFRESHED immunity section"),
+	// Animate first item to appear at 25% scroll of immunity section
+	ScrollTrigger.create({
+		trigger: immunitySection,
+		start: "top+=20% center", // Appears when user scrolls 25% into the section
+		end: "top+=35% center", // Disappears when user scrolls 50% into the section
+		markers: cfg.debug,
+		onEnter: () => {
+			console.log("🚀 First item APPEARING (at 25% scroll)");
+			gsap.to(firstItem, {
+				opacity: 1,
+				//y: 0,
+				duration: 0.2,
+				//ease: "power2.out",
+			});
+		},
+		onLeave: () => {
+			console.log("👋 First item DISAPPEARING (at 50% scroll)");
+			gsap.to(firstItem, {
+				opacity: 0,
+				//y: -30,
+				duration: 0.2,
+				//ease: "power2.in",
+			});
+		},
+		onEnterBack: () => {
+			console.log("🔄 First item REAPPEARING (scrolling back)");
+			gsap.to(firstItem, {
+				opacity: 1,
+				//y: 0,
+				duration: 0.2,
+				//ease: "power2.out",
+			});
+		},
+		onLeaveBack: () => {
+			console.log("⬅️ First item HIDING (scrolling back past 25%)");
+			gsap.to(firstItem, {
+				opacity: 0,
+				//y: 30,
+				duration: 0.2,
+				//ease: "power2.in",
+			});
 		},
 	});
 
-	// Content always stays visible - no ScrollTrigger interference
-	// Just ensure content wrapper is always visible
-	gsap.set(contentWrapper, { opacity: 1, y: 0 });
+	// Animate second item to appear at 50% scroll of immunity section
+	ScrollTrigger.create({
+		trigger: immunitySection,
+		start: "top+=70% center", // Appears when user scrolls 50% into the section
+		end: "top+=80% center", // Disappears when user scrolls 75% into the section
+		markers: cfg.debug,
+		onEnter: () => {
+			console.log("🚀 Second item APPEARING (at 50% scroll)");
+			gsap.to(secondItem, {
+				opacity: 1,
+				//y: 0,
+				duration: 0.8,
+				//ease: "power2.out",
+			});
+		},
+		onLeave: () => {
+			console.log("👋 Second item DISAPPEARING (at 75% scroll)");
+			gsap.to(secondItem, {
+				opacity: 0,
+				//y: -30,
+				duration: 0.4,
+				//ease: "power2.in",
+			});
+		},
+		onEnterBack: () => {
+			console.log("🔄 Second item REAPPEARING (scrolling back)");
+			gsap.to(secondItem, {
+				opacity: 1,
+				//y: 0,
+				duration: 0.4,
+				//ease: "power2.out",
+			});
+		},
+		onLeaveBack: () => {
+			console.log("⬅️ Second item HIDING (scrolling back past 50%)");
+			gsap.to(secondItem, {
+				opacity: 0,
+				//y: 30,
+				duration: 0.4,
+				//ease: "power2.in",
+			});
+		},
+	});
 
 	// Hide content wrapper when reaching end of immunity section
 	ScrollTrigger.create({
@@ -555,9 +618,9 @@ function initImmunitySectionAnimation(pageSelector, customConfig = {}) {
 			// Hide content wrapper when reaching end of section
 			gsap.to(contentWrapper, {
 				opacity: 0,
-				y: -50,
+				//y: -50,
 				duration: 0.8,
-				ease: "power2.inOut",
+				//ease: "power2.inOut",
 			});
 		},
 		onLeaveBack: () => {
@@ -567,35 +630,12 @@ function initImmunitySectionAnimation(pageSelector, customConfig = {}) {
 			// Show content wrapper when scrolling back up
 			gsap.to(contentWrapper, {
 				opacity: 1,
-				y: 0,
-				duration: 0.8,
-				ease: "power2.out",
+				//y: 0,
+				duration: 0.4,
+				//ease: "power2.out",
 			});
 		},
 	});
-
-	// Content transition: First content completely hides, then second content appears (NO OVERLAP)
-	immunityTimeline
-		.to(
-			firstItem,
-			{
-				opacity: 0,
-				y: -30,
-				ease: "power2.inOut",
-				duration: 0.3, // Fast fade out for first item
-			},
-			cfg.firstContentEnd
-		)
-		.to(
-			secondItem,
-			{
-				opacity: 1,
-				y: 0,
-				ease: "power2.out",
-				duration: 0.4, // Quick but smooth fade in for second item
-			},
-			cfg.firstContentEnd + cfg.contentGap // Start second content AFTER first content completely disappears
-		);
 
 	// Side images move normally (not pinned)
 	if (leftImages && rightImages) {
@@ -679,6 +719,231 @@ function waitForGSAPAndInitImmunity(pageSelector, customConfig) {
 
 
 
+
+
+
+// ========================================
+// WELLNESS SECTION ANIMATION SYSTEM
+// ========================================
+
+/**
+ * Default Wellness Section Animation Configuration
+ */
+const DEFAULT_WELLNESS_CONFIG = {
+	start: "top center",
+	end: "bottom center",
+	scrub: 1,
+	debug: false,
+	contentGap: 0.3,
+	imageMoveSpeed: 0.8,
+	// Text appearance/disappearance offsets
+	textAppearOffset: 200, // Text appears 200px after section top
+	textDisappearOffset: 100, // Text disappears 100px before section bottom
+};
+
+/**
+ * Initialize Wellness Section Animation
+ * Similar to immunity section animation but adapted for wellness section structure
+ *
+ * @param {string} pageSelector - CSS selector for the page
+ * @param {object} customConfig - Optional configuration to override defaults
+ */
+function initWellnessSectionAnimation(pageSelector, customConfig = {}) {
+	console.log("🌿 initWellnessSectionAnimation called for:", pageSelector);
+
+	const page = document.querySelector(pageSelector);
+	if (!page) {
+		console.warn("❌ Page not found:", pageSelector);
+		return;
+	}
+	console.log("✅ Page found:", page);
+
+	// Skip animation on mobile devices
+	const isMobile = window.innerWidth <= 767;
+	if (isMobile) {
+		console.log("📱 Skipping wellness animation on mobile");
+		return;
+	}
+
+	if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+		console.warn("GSAP/ScrollTrigger not available for Wellness Section animation.");
+		return;
+	}
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	// Get wellness section elements
+	const wellnessSection = page.querySelector(".wellness-section");
+	const wellnessContent = wellnessSection ? wellnessSection.querySelector(".wellness-content") : null;
+	const wellnessTitle = wellnessContent ? wellnessContent.querySelector(".wellness-title") : null;
+	const wellnessDescription = wellnessContent ? wellnessContent.querySelector(".wellness-description") : null;
+	
+	// Get image elements
+	const topImage = wellnessSection ? wellnessSection.querySelector(".wellness-left") : null;
+	const bottomImage = wellnessSection ? wellnessSection.querySelector(".wellness-right") : null;
+
+	if (!wellnessSection || !wellnessContent || !wellnessTitle || !wellnessDescription) {
+		console.warn("❌ Required wellness section elements not found:", {
+			wellnessSection: !!wellnessSection,
+			wellnessContent: !!wellnessContent,
+			wellnessTitle: !!wellnessTitle,
+			wellnessDescription: !!wellnessDescription,
+		});
+		return;
+	}
+	console.log("✅ All required wellness elements found");
+
+	const cfg = { ...DEFAULT_WELLNESS_CONFIG, ...customConfig };
+
+	// Set initial states - Content HIDDEN initially
+	gsap.set(wellnessTitle, { opacity: 0 });
+	gsap.set(wellnessDescription, { opacity: 0 });
+	gsap.set(wellnessContent, { opacity: 0 });
+
+	// Text appears 200px after section top enters viewport
+	ScrollTrigger.create({
+		trigger: wellnessSection,
+		start: `top+=${cfg.textAppearOffset}px center`,
+		end: `bottom-=${cfg.textDisappearOffset}px center`,
+		markers: cfg.debug,
+		onEnter: () => {
+			console.log("🌿 Text APPEARING (200px after section top)");
+			gsap.to(wellnessContent, {
+				opacity: 1,
+				duration: 0.8,
+				ease: "power2.out",
+			});
+			gsap.to([wellnessTitle, wellnessDescription], {
+				opacity: 1,
+				//y: 0,
+				duration: 1.2,
+				ease: "power2.out",
+				stagger: 0.15,
+			});
+		},
+		onLeave: () => {
+			console.log("🌿 Text DISAPPEARING (100px before section bottom)");
+			gsap.to([wellnessTitle, wellnessDescription], {
+				opacity: 0,
+				//y: -30,
+				duration: 0.6,
+				ease: "power2.in",
+				stagger: 0.1,
+			});
+		},
+		onEnterBack: () => {
+			console.log("🌿 Text REAPPEARING (scrolling back)");
+			gsap.to(wellnessContent, {
+				opacity: 1,
+				duration: 1.2,
+				ease: "power2.out",
+			});
+			gsap.to([wellnessTitle, wellnessDescription], {
+				opacity: 1,
+				//y: 0,
+				duration: 0.8,
+				ease: "power2.out",
+				stagger: 0.15,
+			});
+		},
+		onLeaveBack: () => {
+			console.log("🌿 Text HIDING (scrolling back past start)");
+			gsap.to([wellnessTitle, wellnessDescription], {
+				opacity: 0,
+				//y: 30,
+				duration: 0.6,
+				ease: "power2.in",
+				stagger: 0.1,
+			});
+		},
+	});
+
+	// Animate images if they exist
+	if (topImage || bottomImage) {
+		const imageTimeline = gsap.timeline({
+			scrollTrigger: {
+				trigger: wellnessSection,
+				start: cfg.start,
+				end: cfg.end,
+				scrub: cfg.scrub,
+				markers: false,
+				invalidateOnRefresh: false,
+				refreshPriority: "high",
+				fastScrollEnd: true,
+			},
+		});
+
+		// Top image moves up and fades slightly
+		if (topImage) {
+			imageTimeline.to(
+				topImage,
+				{
+					y: -40 * cfg.imageMoveSpeed,
+					opacity: 0.85,
+					ease: "power1.out",
+				},
+				0
+			);
+		}
+
+		// Bottom image moves down and fades slightly
+		if (bottomImage) {
+			imageTimeline.to(
+				bottomImage,
+				{
+					y: 40 * cfg.imageMoveSpeed,
+					opacity: 0.85,
+					ease: "power1.out",
+				},
+				0
+			);
+		}
+	}
+
+	// Log animation initialization
+	if (cfg.debug) {
+		console.log("Wellness Section Animation Initialized", {
+			config: cfg,
+			elements: { wellnessSection, wellnessContent, wellnessTitle, wellnessDescription },
+		});
+
+		console.log("🔍 ScrollTrigger instances:", ScrollTrigger.getAll().length);
+		console.log("🔍 Current ScrollTrigger instances:", ScrollTrigger.getAll());
+
+		setTimeout(() => {
+			if (typeof ScrollTrigger !== "undefined") {
+				ScrollTrigger.refresh();
+				console.log("🔄 Forced ScrollTrigger refresh to keep markers visible");
+			}
+		}, 100);
+	}
+
+	console.log("✅ Wellness section animation initialized");
+}
+
+/**
+ * Wait for GSAP to load before initializing wellness section animation
+ */
+function waitForGSAPAndInitWellness(pageSelector, customConfig) {
+	if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+		initWellnessSectionAnimation(pageSelector, customConfig);
+	} else {
+		setTimeout(() => waitForGSAPAndInitWellness(pageSelector, customConfig), 100);
+	}
+}
+
+// Export functions for use in main theme.js
+window.initWellnessSectionAnimation = initWellnessSectionAnimation;
+window.waitForGSAPAndInitWellness = waitForGSAPAndInitWellness;
+
+
+
+
+
+
+
+
+
 // Add this section to your animations.js file, after the IMMUNITY SECTION ANIMATION SYSTEM
 
 // ========================================
@@ -695,28 +960,28 @@ const DEFAULT_SERENE_IMAGE_CONFIG = {
 	// Upper Middle Image Settings
 	upperMiddleImage: {
 		enabled: true, // Enable/disable upper middle image animation
-		moveDistance: 25, // Distance to move down (positive = down, negative = up)
+		moveDistance: 5, // Distance to move down (positive = down, negative = up)
 		ease: "none", // Animation easing
 	},
 	
 	// Upper Right Image Settings
 	upperRightImage: {
 		enabled: true, // Enable/disable upper right image animation
-		moveDistance: -25, // Distance to move up (negative = up, positive = down)
+		moveDistance: -5, // Distance to move up (negative = up, positive = down)
 		ease: "none", // Animation easing
 	},
 	
 	// Bottom Middle Image Settings
 	middleImage: {
 		enabled: true, // Enable/disable middle image animation
-		moveDistance: -80, // Distance to move up (negative = up, positive = down)
+		moveDistance: -100, // Distance to move up (negative = up, positive = down)
 		ease: "none", // Animation easing
 	},
 	
 	// Bottom Left Image Settings
 	leftImage: {
 		enabled: true, // Enable/disable left image animation
-		moveDistance: -60, // Distance to move up (can be different from middle)
+		moveDistance: -5, // Distance to move up (can be different from middle)
 		ease: "none", // Animation easing
 	},
 	

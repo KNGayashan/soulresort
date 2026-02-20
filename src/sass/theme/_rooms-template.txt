@@ -359,12 +359,12 @@
 				.masonry-gallery {
 					width: 100%;
 					position: relative;
-					display: block !important;
-					opacity: 1 !important;
-					visibility: visible !important;
+					display: block !important; // Force it to be visible
+					opacity: 1 !important; // Force opacity
+					visibility: visible !important; // Force visibility
 					transition: opacity 0.5s ease;
 
-					// Default masonry layout for 11+ images
+					// CSS Column Masonry Layout (like reference)
 					column-count: 2;
 					column-gap: 15px;
 					column-fill: balance;
@@ -381,104 +381,12 @@
 						column-count: 5;
 					}
 
-					// Dynamic layouts based on image count (1-10 images)
-					&[data-image-count="1"] {
-						display: flex !important;
-						justify-content: center;
-						align-items: center;
-						column-count: initial;
-						gap: 0;
-
-						.brick {
-							max-width: 300px;
-							width: 100%;
-							margin: 0 auto;
-
-							@media (max-width: 576px) {
-								max-width: 100%;
-							}
-
-							.brick-image {
-								width: 100%;
-								height: auto;
-								min-height: auto;
-								max-height: none;
-								object-fit: cover;
-							}
-						}
-					}
-
-					&[data-image-count="2"] {
-						display: grid !important;
-						grid-template-columns: repeat(2, 1fr);
-						column-count: initial;
-						gap: 15px;
-
-						@media (max-width: 768px) {
-							grid-template-columns: 1fr;
-						}
-					}
-
-					&[data-image-count="3"] {
-						display: grid !important;
-						grid-template-columns: repeat(3, 1fr);
-						column-count: initial;
-						gap: 15px;
-
-						@media (max-width: 992px) {
-							grid-template-columns: repeat(2, 1fr);
-						}
-
-						@media (max-width: 576px) {
-							grid-template-columns: 1fr;
-						}
-					}
-
-					&[data-image-count="4"] {
-						display: grid !important;
-						grid-template-columns: repeat(4, 1fr);
-						column-count: initial;
-						gap: 15px;
-
-						@media (max-width: 1200px) {
-							grid-template-columns: repeat(2, 1fr);
-						}
-
-						@media (max-width: 576px) {
-							grid-template-columns: 1fr;
-						}
-					}
-
-					&[data-image-count="5"],
-					&[data-image-count="6"],
-					&[data-image-count="7"],
-					&[data-image-count="8"],
-					&[data-image-count="9"],
-					&[data-image-count="10"] {
-						display: grid !important;
-						grid-template-columns: repeat(5, 1fr);
-						column-count: initial;
-						gap: 15px;
-
-						@media (max-width: 1400px) {
-							grid-template-columns: repeat(4, 1fr);
-						}
-
-						@media (max-width: 1200px) {
-							grid-template-columns: repeat(3, 1fr);
-						}
-
-						@media (max-width: 768px) {
-							grid-template-columns: repeat(2, 1fr);
-						}
-
-						@media (max-width: 576px) {
-							grid-template-columns: 1fr;
-						}
-					}
-
 					.brick {
 						box-sizing: border-box;
+						-webkit-column-break-inside: avoid;
+						page-break-inside: avoid;
+						break-inside: avoid;
+						margin-bottom: 15px;
 						position: relative;
 						overflow: hidden;
 						border-radius: 12px;
@@ -486,50 +394,8 @@
 						transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 						cursor: pointer;
 						background: #f8f9fa;
+						display: inline-block;
 						width: 100%;
-
-						// Override width for single image
-						.masonry-gallery[data-image-count="1"] & {
-							width: 300px !important;
-							max-width: 300px !important;
-
-							@media (max-width: 576px) {
-								width: 100% !important;
-								max-width: 100% !important;
-							}
-						}
-
-						// For grid layouts (1-10 images), remove bottom margin
-						margin-bottom: 15px;
-
-						// For masonry layout (11+ images), add column break properties and margin
-						.masonry-gallery:not([data-image-count]) &,
-						.masonry-gallery[data-image-count=""]:is([data-image-count="11"],
-							[data-image-count="12"],
-							[data-image-count="13"],
-							[data-image-count="14"],
-							[data-image-count="15"],
-							[data-image-count="16"],
-							[data-image-count="17"],
-							[data-image-count="18"],
-							[data-image-count="19"],
-							[data-image-count="20"],
-							[data-image-count="21"],
-							[data-image-count="22"],
-							[data-image-count="23"],
-							[data-image-count="24"],
-							[data-image-count="25"],
-							[data-image-count="26"],
-							[data-image-count="27"],
-							[data-image-count="28"],
-							[data-image-count="29"],
-							[data-image-count="30"]) & {
-							-webkit-column-break-inside: avoid;
-							page-break-inside: avoid;
-							break-inside: avoid;
-							margin-bottom: 15px;
-							display: inline-block;
-						}
 
 						&:hover {
 							transform: translateY(-8px) scale(1.02);
@@ -560,40 +426,6 @@
 							display: block;
 							cursor: pointer;
 							transition: transform 0.3s ease, filter 0.3s ease;
-
-							// For single image - no min/max height restrictions
-							.masonry-gallery[data-image-count="1"] & {
-								min-height: auto;
-								max-height: none;
-							}
-
-							// For grid layouts, ensure consistent image heights
-							.masonry-gallery[data-image-count="2"] &,
-							.masonry-gallery[data-image-count="3"] &,
-							.masonry-gallery[data-image-count="4"] & {
-								min-height: 300px;
-								max-height: 500px;
-
-								@media (max-width: 768px) {
-									min-height: 250px;
-									max-height: 400px;
-								}
-							}
-
-							.masonry-gallery[data-image-count="5"] &,
-							.masonry-gallery[data-image-count="6"] &,
-							.masonry-gallery[data-image-count="7"] &,
-							.masonry-gallery[data-image-count="8"] &,
-							.masonry-gallery[data-image-count="9"] &,
-							.masonry-gallery[data-image-count="10"] & {
-								min-height: 250px;
-								max-height: 450px;
-
-								@media (max-width: 768px) {
-									min-height: 200px;
-									max-height: 350px;
-								}
-							}
 						}
 
 						.brick-overlay {
@@ -634,7 +466,6 @@
 
 					.gallery-empty {
 						column-span: all;
-						grid-column: 1 / -1;
 						text-align: center;
 						padding: 60px 20px;
 						color: #666;

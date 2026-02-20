@@ -1,0 +1,32 @@
+
+
+# ---------------------------
+# Custom rules for WordPress SEO
+# ---------------------------
+
+# Block sensitive or unnecessary directories
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/themes/
+Disallow: /cgi-bin/
+
+# Allow AJAX for admin
+Allow: /wp-admin/admin-ajax.php
+
+# ---------------------------
+# START YOAST BLOCK
+# ---------------------------
+User-agent: *
+Disallow:
+
+Sitemap: https://soulresortslanka.com/sitemap_index.xml
+# ---------------------------
+# END YOAST BLOCK
+
+# ---------------------------
+# Optional: block specific files
+# ---------------------------
+Disallow: /readme.html
+Disallow: /license.txt

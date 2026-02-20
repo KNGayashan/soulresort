@@ -1648,6 +1648,23 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
+
+
+
+
+
+  // Initialize Wellness Section Animation (Accommodation page)
+waitForGSAPAndInitWellness(".accommodation-template", {
+  debug: false, // See the markers
+  textAppearOffset: 1100, // Change when text appears
+  textDisappearOffset: -700, // Change when text disappears
+  imageMoveSpeed: 0.5 // Speed of image movement,
+});
+
+
+
+
+
 });
 
 // *****************************************
@@ -2652,7 +2669,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	  ease: "power2.out" // Up 100px
     },
     leftImage: {
-      moveDistance: -70,
+      moveDistance: -30,
 	  ease: "power2.out"// Up 70px
     }
   });

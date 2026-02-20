@@ -73,6 +73,10 @@
 				border-radius: 50%;
 				filter: blur(30px);
 				z-index: 1;
+
+				@include media-breakpoint-down(md) {
+					display: none;
+				}
 			}
 
 			&:after {
@@ -87,6 +91,10 @@
 				border-radius: 50%;
 				filter: blur(30px);
 				z-index: 1;
+
+				@include media-breakpoint-down(md) {
+					display: none;
+				}
 			}
 
 			// Mobile: Disable all animations and use simple layout
@@ -103,7 +111,7 @@
 						left: auto !important;
 						transform: none !important;
 						width: 100% !important;
-						z-index: 1 !important;
+						z-index: 0 !important;
 						pointer-events: all !important;
 						// padding: 40px 20px;
 
@@ -122,15 +130,15 @@
 									width: 100% !important;
 									transition: none !important;
 									margin-bottom: 40px;
-									padding: 0 55px 0 55px !important;
-									
+									padding: 0 calc(5px + (55 - 5) * ((100vw - 320px) / (1920 - 320))) !important;
+									z-index: 0 !important;
 
 									&.first,
 									&.second {
 										opacity: 1 !important; // Always visible on mobile
 										position: static !important;
 										transform: none !important;
-										padding: 0 55px 0 55px !important;
+										padding: 0 calc(5px + (55 - 5) * ((100vw - 320px) / (1920 - 320))) !important;
 										
 									}
 
@@ -151,6 +159,14 @@
 										z-index: 4;
 										position: sticky;
 									}
+
+									.mobile_image_wellness {
+										margin-top: 30px;
+									}
+
+									.mobile_image_ayurveda {
+										margin-top: 30px;
+									} 
 								}
 							}
 						}
@@ -198,7 +214,7 @@
 						left: 50%;
 						transform: translate(-50%, -50%);
 						width: 100%;
-						z-index: 10;
+						z-index: 0;
 						pointer-events: none; // Allow scrolling through content
 
 						.content_wrapper {
@@ -216,17 +232,17 @@
 									width: 100%;
 									transition: opacity 0.5s ease, transform 0.5s ease;
 
-									&.first {
-										opacity: 0;
-										transition: opacity 0.8s ease-in-out;
+									// &.first {
+									// 	opacity: 0;
+									// 	transition: opacity 0.8s ease-in-out;
 
-										&.show {
-											opacity: 1;
-										}
-									}
-									&.second {
-										opacity: 0;
-									}
+									// 	&.show {
+									// 		opacity: 1;
+									// 	}
+									// }
+									// &.second {
+									// 	opacity: 0;
+									// }
 
 									.title {
 										font-family: "Lavish", serif;

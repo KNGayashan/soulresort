@@ -165,13 +165,10 @@ defined( 'ABSPATH' ) || exit;
     <section class="gallery-section">
         <div class="container">
             <div class="gallery-wrapper">
-                <?php 
-                $gallery_items = get_sub_field('gallery_items');
-                $total_images = $gallery_items ? count($gallery_items) : 0;
-                ?>
 
-                <div class="masonry-gallery" id="masonry-gallery" data-image-count="<?php echo $total_images; ?>">
+                <div class="masonry-gallery" id="masonry-gallery">
                     <?php 
+                    $gallery_items = get_sub_field('gallery_items');
                     if ($gallery_items): 
                         $image_count = 0;
                         foreach ($gallery_items as $image): 
@@ -245,9 +242,9 @@ defined( 'ABSPATH' ) || exit;
         </div>
 
         <div class="lightbox-model" id="lightbox-modal">
-            <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">&times;</button>
-            <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous image">&#8249;</button>
-            <button class="lightbox-next" id="lightbox-next" aria-label="Next image">&#8250;</button>
+            <button class="lightbox-close" id="lightbox-close" aria-label="Close light">&times;</button>
+            <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous light">&#8249;</button>
+            <button class="lightbox-next" id="lightbox-next" aria-label="Next light">&#8250;</button>
             <div class="lightbox-content">
                 <img src="" alt="" class="lightbox-image" id="lightbox-image">
                 <div class="lightbox-caption" id="lightbox-caption"></div>
